@@ -11,3 +11,5 @@ nav span             { margin: 0px 10px 0px 0px;}
 footer  > a          { padding: 10px;}
 video	             { padding-left: 100px;}
 .author				 { padding-top: 20px;}
+
+#ErrorMsgs			 { color: #f61; font-size: smaller}

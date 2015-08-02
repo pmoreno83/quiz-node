@@ -22,11 +22,22 @@ exports.answer = function (req,res){
 
 //get('/quizes')
 exports.index = function(req,res){
-	models.Quiz.findAll().then(function(quizes){
-		res.render('quizes/index',{quizes: quizes});
-	}).catch(function(error){
-		next(error);
-	})
+
+	if (req.query.search === undefined) {
+		models.Quiz.findAll().then(function(quizes){
+			res.render('quizes/index',{quizes: quizes});
+			}).catch(function(error){
+				next(error);
+			});
+	} else {
+
+		var busca = '%'+req.query.search.replace(' ','%') +'%';
+		models.Quiz.findAll({where: ["pregunta like ?", busca], order: [['pregunta', 'ASC']]}).then(function(resultados){
+			res.render('quizes/busca',{resultados: resultados});
+		}).catch(function(error){
+			next(error);
+		});
+	};
 };
 
 //Autoload - factoriza el codigo si la ruta incluye :quizId

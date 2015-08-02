@@ -43,6 +43,11 @@ sequelize.sync().then(function() {
 				});
 			Quiz.create(
 				{
+					pregunta: 'Capital de Grecia',
+					respuesta: 'Atenas'
+				});
+			Quiz.create(
+				{
 					pregunta: 'Capital de Portugal',
 					respuesta: 'Lisboa'
 				}).then(function(){

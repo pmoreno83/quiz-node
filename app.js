@@ -27,6 +27,12 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(partials());
 
+//recogemos la hora actual
+app.use(function(req, res, next){
+    req.time = new Date().getTime();
+    next();
+});
+
 //Helpers dinamicos
 app.use(function(req, res, next){
     //guardar path en session.redir para despues de login
